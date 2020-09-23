@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'homepage#index'
-  get '/feeds'                    => 'feeds#index'
+  root to: "static_pages#home"
+  get '/demo' => 'static_pages#demo'
+  get '/feeds' => 'feeds#index'
 
   # USERS
   post '/users' => 'users#create'
