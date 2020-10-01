@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "static_pages#home"
   #get '/demo' => 'static_pages#demo'
-  get '/demo' => 'static_pages#demo' #new
+  get '/feedpage' => 'static_pages#feedpage' #new
   #get '/feeds' => 'feeds#index'
 
   # Redirect all other paths to index page, which will be taken over by AngularJS
