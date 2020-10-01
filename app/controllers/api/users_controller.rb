@@ -1,3 +1,4 @@
+module Api
 class UsersController < ApplicationController
   
   def create
@@ -24,3 +25,4 @@ class UsersController < ApplicationController
     end
   
   end
+end

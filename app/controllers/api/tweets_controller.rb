@@ -1,8 +1,9 @@
+module Api
 class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.reverse
-    render 'tweets/index' 
+    render 'api/tweets/index' 
   end
 
   def index_by_user
@@ -10,7 +11,7 @@ class TweetsController < ApplicationController
 
     if user
       @tweets = user.tweets
-      render 'tweets/index' 
+      render 'api/tweets/index' 
     else
       render json: { tweets: [] }
     end
@@ -62,4 +63,5 @@ class TweetsController < ApplicationController
         params.require(:tweet).permit(:message)
       end
 
+end
 end

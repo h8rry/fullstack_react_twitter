@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   root to: "static_pages#home"
-  get '/demo' => 'static_pages#demo'
-  get '/feeds' => 'feeds#index'
+  #get '/demo' => 'static_pages#demo'
+  get '/demo' => 'static_pages#demo' #new
+  #get '/feeds' => 'feeds#index'
+
+  # Redirect all other paths to index page, which will be taken over by AngularJS
+  #get '*path'    => "static_pages#home"
+
+ namespace :api do
 
   # USERS
   post '/users' => 'users#create'
@@ -19,6 +25,7 @@ Rails.application.routes.draw do
   post '/tweets' => 'tweets#create'
   delete '/tweets/:id' => 'tweets#destroy'
 
-  # Redirect all other paths to index page, which will be taken over by AngularJS
-  get '*path'    => 'homepage#index'
+  end
+  
 end
+
