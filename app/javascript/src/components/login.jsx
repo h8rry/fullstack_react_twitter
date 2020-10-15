@@ -23,7 +23,7 @@ class Login extends React.Component {
       error: '',
     });
 
-    fetch('../views/api/sessions', safeCredentials({
+    fetch('/api/sessions', safeCredentials({
       method: 'POST',
       body: JSON.stringify({
         user: {
@@ -56,47 +56,6 @@ class Login extends React.Component {
     const { username, password, error } = this.state;
 
     return (
-      
-    /*
-    <React.Fragment>
-        <div className="border_about">
-<h1 className="text-center">LOGIN</h1>
-
-   <form onSubmit={this.login}>
-  <div className="form-group">
-    <label for="exampleInput">Username</label>
-    <input 
-    name="username"
-    type="text" 
-    className="form-control" 
-    id="exampleInput" 
-    aria-describedby="emailHelp" 
-    placeholder="Enter your username"
-    value={username} 
-    onChange={this.handleChange} />
-  </div>
-  <div className="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input 
-    name="password"
-    type="password" 
-    class="form-control" 
-    id="exampleInputPassword1" 
-    placeholder="Password"
-    value={password} 
-    onChange={this.handleChange}
-    />
-   
-  </div>
-  <div className="form-check">
-    <p>Forgot password?</p>
-  </div>
-  <button type="submit" class="btn btn-primary">Login</button>
-  {error && <p className="text-danger mt-2">{error}</p>}
-</form>
-        </div>
-    </React.Fragment>
-    */
 
    <React.Fragment>
 

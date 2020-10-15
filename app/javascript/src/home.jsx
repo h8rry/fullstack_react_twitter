@@ -5,6 +5,7 @@ import About from './components/about'
 import Login from './components/login'
 import Signup from './components/signup'
 import { safeCredentials, handleErrors } from './utils/fetchHelper';
+import Feedpage from './feedpage';
 
 class Home extends React.Component {
 
@@ -14,7 +15,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    fetch('../views/api/sessions/authenticated.jbuilder')
+    fetch('/api/authenticated')
       .then(handleErrors)
       .then(data => {
         this.setState({
@@ -33,18 +34,12 @@ class Home extends React.Component {
     const { authenticated} = this.state;
     if (authenticated) {
       return (
-        <Layout>
-        <About />
-        <p>YOU ARE LOGGED IN!</p>
-        <Login />
-        <Signup />
-      </Layout>
+       <Feedpage />
       );
     };
     return (
       <Layout>
       <About />
-      <p>NOT LOGGED IN!</p>
       <Login />
       <Signup />
     </Layout>
