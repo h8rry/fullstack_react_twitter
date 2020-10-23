@@ -52,6 +52,7 @@ class Myposts extends Component {
         return (
         <React.Fragment>
             <div className="border_about">
+             Current user: {this.state.username}
                 <form onSubmit={this.mySubmitHandler}>
                     <div class="form-group">
                         <textarea 
