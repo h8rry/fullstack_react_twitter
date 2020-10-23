@@ -2,12 +2,14 @@ import React, {Component} from "react"
 import '../styles.scss';
 import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
-class Post extends Component {
+class Myposts extends Component {
     constructor() {
         super()
         this.state = {
            text: "This is text",
-           tweets: []
+           tweets: [],
+           authenticated: false,
+           username: " "
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -24,38 +26,26 @@ class Post extends Component {
         event.preventDefault();
       }
 
-      
-/*
-      var currentUser;
-
-  authenticate(function(response) {
-    console.log(response);
-    if(response.authenticated) {
-      currentUser = response.username;
-      $('#user-icon').text(currentUser);
-      $('.username').text(currentUser);
-      $('.screenName').text('@'+currentUser);
-      getUserTweets(currentUser, function(response) {
-        $('.user-stats-tweets').text(response.length);
-      });
-    } else {
-      window.location.replace("/");
-    }
-  }, function(error) {
-    console.log(error);
-    // window.location.replace("/");
-  });
-*/
     componentDidMount () {
-        fetch('/api/tweets')
-        .then(handleErrors)
-        .then(data => {
-         console.log(data);
-         this.setState({
-         tweets: data.tweets
-        })
-      })
-      }
+        fetch('/api/authenticated')
+          .then(handleErrors)
+          .then(data => {
+              console.log(data)
+              this.setState({
+                username: data.username,
+              })
+          })
+  }
+
+  componentDidUpdate() {
+    fetch(`/api/users/${this.state.username}/tweets`)
+    .then(handleErrors)
+    .then(data => {
+     this.setState({
+     tweets: data.tweets
+    })
+  })
+  }
     
     render() {
         const { tweets } = this.state;
@@ -122,4 +112,4 @@ class Post extends Component {
 }
 }
 
-export default Post;
+export default Myposts;

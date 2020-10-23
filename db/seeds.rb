@@ -11,9 +11,11 @@ users = User.create([
 user1 = User.find_by( username: "Tommy")
 user2 = User.find_by( username: "Bobby")
 user3 = User.find_by( username: "Sarah")
+user4 = User.find_by( username: "Joanna092")
 
 tweets = Tweet.create([
   { user: user1, message: 'This is first example message'},
   { user: user2, message: 'This is second example message'},
   { user: user3, message: 'This is third example message'},
+  { user: user4, message: 'This is fourth example message'},
 ])

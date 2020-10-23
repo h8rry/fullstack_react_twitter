@@ -10,4 +10,8 @@ class StaticPagesController < ApplicationController
     def logout
       render 'logout'
     end
+
+    def myfeeds
+      render 'myfeeds'
+    end 
   end
