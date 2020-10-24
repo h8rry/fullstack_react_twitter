@@ -6,7 +6,7 @@ class Myposts extends Component {
     constructor() {
         super()
         this.state = {
-           text: "This is text",
+           text: "Type your message here",
            tweets: [],
            authenticated: false,
            username: " "
@@ -21,10 +21,12 @@ class Myposts extends Component {
         })
     }
 
+    /*
     mySubmitHandler = (event) => {
         alert("You are submitting " + this.state.text);
         event.preventDefault();
       }
+*/
 
     componentDidMount () {
         fetch('/api/authenticated')
@@ -46,6 +48,32 @@ class Myposts extends Component {
     })
   })
   }
+
+  newPost = (e) => {
+    console.log("posted")
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
+
+    fetch('/api/tweets', safeCredentials({
+      method: 'POST',
+      body: JSON.stringify({
+        tweet: {
+          username: this.state.username,
+          message: this.state.text
+        }
+      })
+    }))
+      .then(handleErrors)
+      .catch(error => {
+        this.setState({
+          error: 'Could not add tweet',
+        })
+        console.log("Could not add tweet")
+      })
+
+  }
     
     render() {
         const { tweets } = this.state;
@@ -53,7 +81,7 @@ class Myposts extends Component {
         <React.Fragment>
             <div className="border_about">
              Current user: {this.state.username}
-                <form onSubmit={this.mySubmitHandler}>
+                <form onSubmit={this.newPost}>
                     <div class="form-group">
                         <textarea 
                         class="form-control" 
@@ -69,20 +97,6 @@ class Myposts extends Component {
                         <button type="submit" class="btn btn-primary">Tweet</button>
                     </div>
                 </form>
-            </div>
-
-          <div className="border_about">
-            <div className="container">
-            <div className="row">
-            <div className="col-8">
-            <p>Username@ username</p>
-            <p>{this.state.text}</p>
-            </div>
-            <div className="col-4">
-            <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-            </div>            
-            </div>
             </div>
 
             {tweets.map(tweet => {

@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      @tweets = user.tweets
+      @tweets = user.tweets.reverse
       render 'api/tweets/index' 
     else
       render json: { tweets: [] }

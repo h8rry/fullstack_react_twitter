@@ -6,8 +6,9 @@ class Post extends Component {
     constructor() {
         super()
         this.state = {
-           text: "This is text",
-           tweets: []
+           text: "Type your message here",
+           tweets: [], 
+           username: " "
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -19,33 +20,47 @@ class Post extends Component {
         })
     }
 
-    mySubmitHandler = (event) => {
-        alert("You are submitting " + this.state.text);
-        event.preventDefault();
+      newPost = (e) => {
+        console.log("posted")
+        if (e) { e.preventDefault(); }
+        this.setState({
+          error: '',
+        });
+    
+        fetch('/api/tweets', safeCredentials({
+          method: 'POST',
+          body: JSON.stringify({
+            tweet: {
+              username: this.state.user,
+              message: this.state.text
+            }
+          })
+        }))
+          .then(handleErrors)
+          .catch(error => {
+            this.setState({
+              error: 'Could not add tweet',
+            })
+            console.log("Could not add tweet")
+          })
+
       }
 
-      
-/*
-      var currentUser;
+      /* doesn't work */
 
-  authenticate(function(response) {
-    console.log(response);
-    if(response.authenticated) {
-      currentUser = response.username;
-      $('#user-icon').text(currentUser);
-      $('.username').text(currentUser);
-      $('.screenName').text('@'+currentUser);
-      getUserTweets(currentUser, function(response) {
-        $('.user-stats-tweets').text(response.length);
-      });
-    } else {
-      window.location.replace("/");
-    }
-  }, function(error) {
-    console.log(error);
-    // window.location.replace("/");
-  });
-*/
+      deletePost () {
+        fetch('/api/tweets/')
+        .then(handleErrors)
+        .then(data => {
+         console.log(data);
+         this.setState({
+         tweets: data.tweets
+        })
+      })
+      }
+
+      /* doesn't work */
+
     componentDidMount () {
         fetch('/api/tweets')
         .then(handleErrors)
@@ -57,12 +72,23 @@ class Post extends Component {
       })
       }
     
+      componentDidUpdate() {
+        fetch('/api/tweets')
+        .then(handleErrors)
+        .then(data => {
+         console.log(data);
+         this.setState({
+         tweets: data.tweets
+        })
+      })
+      }
+
     render() {
         const { tweets } = this.state;
         return (
         <React.Fragment>
             <div className="border_about">
-                <form onSubmit={this.mySubmitHandler}>
+                <form onSubmit={this.newPost}>
                     <div class="form-group">
                         <textarea 
                         class="form-control" 
@@ -80,20 +106,6 @@ class Post extends Component {
                 </form>
             </div>
 
-          <div className="border_about">
-            <div className="container">
-            <div className="row">
-            <div className="col-8">
-            <p>Username@ username</p>
-            <p>{this.state.text}</p>
-            </div>
-            <div className="col-4">
-            <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-            </div>            
-            </div>
-            </div>
-
             {tweets.map(tweet => {
               return (
             <div className="border_about">
@@ -106,7 +118,7 @@ class Post extends Component {
             <p>{tweet.message}</p>
             </div>
             <div className="col-4">
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button onClick={this.deletePost} type="button" class="btn btn-danger">Delete</button>
             </div>
     
     </div>            
