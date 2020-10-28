@@ -9,6 +9,7 @@ class Post extends Component {
            text: "Type your message here",
            tweets: [], 
            username: " ",
+           logged_user: "example user"
         }
         this.handleChange = this.handleChange.bind(this)
         this.deletePost = this.deletePost.bind(this)
@@ -47,8 +48,10 @@ class Post extends Component {
 
       }
 
-      deletePost (id)  {
-        console.log("deleted")
+      deletePost (id, user)  {
+
+      if (user == this.state.logged_user) {
+
       fetch(`/api/tweets/${id}`, safeCredentials({
         method: 'DELETE',
       }))
@@ -59,7 +62,9 @@ class Post extends Component {
           })
           console.log("Could not delete tweet")
         })
-
+      } else {
+        console.log("Could not delete tweet")
+      }
     }
 
     componentDidMount () {
@@ -71,6 +76,14 @@ class Post extends Component {
          tweets: data.tweets
         })
       })
+      fetch('/api/authenticated')
+        .then(handleErrors)
+        .then(data => {
+            console.log(data)
+            this.setState({
+              logged_user: data.username,
+            })
+        })
       }
     
       componentDidUpdate() {
@@ -119,7 +132,7 @@ class Post extends Component {
             <p>{tweet.message}</p>
             </div>
             <div className="col-4">
-            <button onClick={ () => this.deletePost(tweet.id)} type="button" class="btn btn-danger">Delete</button>
+            <button onClick={ () => this.deletePost(tweet.id, tweet.username)} type="button" class="btn btn-danger">Delete</button>
 
 
             </div>
