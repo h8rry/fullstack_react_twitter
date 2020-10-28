@@ -21,13 +21,6 @@ class Myposts extends Component {
         })
     }
 
-    /*
-    mySubmitHandler = (event) => {
-        alert("You are submitting " + this.state.text);
-        event.preventDefault();
-      }
-*/
-
     componentDidMount () {
         fetch('/api/authenticated')
           .then(handleErrors)
@@ -75,6 +68,21 @@ class Myposts extends Component {
 
   }
     
+  deletePost (id)  {
+    console.log("deleted")
+  fetch(`/api/tweets/${id}`, safeCredentials({
+    method: 'DELETE',
+  }))
+    .then(handleErrors)
+    .catch(error => {
+      this.setState({
+        error: 'Could not delete tweet',
+      })
+      console.log("Could not delete tweet")
+    })
+
+}
+
     render() {
         const { tweets } = this.state;
         return (
@@ -111,7 +119,7 @@ class Myposts extends Component {
             <p>{tweet.message}</p>
             </div>
             <div className="col-4">
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button onClick={ () => this.deletePost(tweet.id)} type="button" class="btn btn-danger">Delete</button>
             </div>
     
     </div>            

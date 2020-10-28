@@ -8,9 +8,10 @@ class Post extends Component {
         this.state = {
            text: "Type your message here",
            tweets: [], 
-           username: " "
+           username: " ",
         }
         this.handleChange = this.handleChange.bind(this)
+        this.deletePost = this.deletePost.bind(this)
     }
     
     handleChange(event) {
@@ -46,20 +47,20 @@ class Post extends Component {
 
       }
 
-      /* doesn't work */
-
-      deletePost () {
-        fetch('/api/tweets/')
+      deletePost (id)  {
+        console.log("deleted")
+      fetch(`/api/tweets/${id}`, safeCredentials({
+        method: 'DELETE',
+      }))
         .then(handleErrors)
-        .then(data => {
-         console.log(data);
-         this.setState({
-         tweets: data.tweets
+        .catch(error => {
+          this.setState({
+            error: 'Could not delete tweet',
+          })
+          console.log("Could not delete tweet")
         })
-      })
-      }
 
-      /* doesn't work */
+    }
 
     componentDidMount () {
         fetch('/api/tweets')
@@ -118,9 +119,11 @@ class Post extends Component {
             <p>{tweet.message}</p>
             </div>
             <div className="col-4">
-            <button onClick={this.deletePost} type="button" class="btn btn-danger">Delete</button>
+            <button onClick={ () => this.deletePost(tweet.id)} type="button" class="btn btn-danger">Delete</button>
+
+
             </div>
-    
+            
     </div>            
             </div>
             </div>
