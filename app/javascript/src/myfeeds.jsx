@@ -13,6 +13,7 @@ class Myfeeds extends React.Component {
 constructor() {
   super()
   this.handleClick = this.handleClick.bind(this)
+  this.handleClick2 = this.handleClick2.bind(this)
 }
 
 handleClick() {
@@ -20,8 +21,12 @@ handleClick() {
   .then(handleErrors)
   .then(function(data) {
   console.log(data);
-  window.location = "/logout"
+  window.location = "/" 
 })
+}
+
+handleClick2() {
+  window.location = "/"
 }
 
 componentDidMount () {
@@ -36,6 +41,7 @@ componentDidMount () {
     return (
   <Layout>
     <button id="log-out" href="#" onClick={this.handleClick}>Log Out</button>
+    <button onClick={this.handleClick2}>See all feeds</button>
 
       <div className="container">
           <div className="row">

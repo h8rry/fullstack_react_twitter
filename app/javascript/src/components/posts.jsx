@@ -110,6 +110,12 @@ class Post extends Component {
                         placeholder="What is happening?"
                         onChange={this.handleChange} 
                         value={this.state.text} 
+                        onFocus={(e) => {
+                          console.log('Focused on input');
+                          this.setState({
+                            text: " "
+                        })
+                        }}
                         name="text" 
                         >
                         </textarea>

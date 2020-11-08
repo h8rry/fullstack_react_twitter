@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import Layout from './layout';
 import Stats from './components/stats'
-import NewPost from './components/new_post'
 import Post from './components/posts'
-import ExamplePost from './components/example_post'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { safeCredentials, handleErrors } from './utils/fetchHelper';
 
@@ -16,6 +16,7 @@ constructor() {
     feeds: [],
   }*/
   this.handleClick = this.handleClick.bind(this)
+  this.handleClick2 = this.handleClick2.bind(this)
 }
 
 handleClick() {
@@ -23,9 +24,14 @@ handleClick() {
   .then(handleErrors)
   .then(function(data) {
   console.log(data);
-  window.location = "/logout"
+  window.location = "/" 
 })
 }
+
+handleClick2() {
+  window.location = "/myfeeds"
+}
+
 
 componentDidMount () {
   fetch('/api/tweets')
@@ -37,22 +43,18 @@ componentDidMount () {
 }
 
   render () {
+
     return (
   <Layout>
     <button id="log-out" href="#" onClick={this.handleClick}>Log Out</button>
-
+    <button onClick={this.handleClick2}>See only my feeds</button>
+ 
       <div className="container">
           <div className="row">
               <div className="col-2">
     <Stats/>
               </div>
               <div className="col-10">
-                {/*
-    <NewPost/>
-    <ExamplePost/>
-    <ExamplePost/>
-    <ExamplePost/>
-                */}
     <Post/>
               </div>
     </div>

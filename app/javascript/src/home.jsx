@@ -39,9 +39,18 @@ class Home extends React.Component {
     };
     return (
       <Layout>
+
+<div className="container">
+<div className="row">
+<div className="col">
       <About />
+</div>
+<div className="col">
       <Login />
       <Signup />
+</div>
+</div>
+</div>
     </Layout>
     );
   }

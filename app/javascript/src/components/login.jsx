@@ -60,7 +60,7 @@ class Login extends React.Component {
    <React.Fragment>
 
    <form onSubmit={this.login}>
-     <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Email" value={username} onChange={this.handleChange} required />
+     <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Username" value={username} onChange={this.handleChange} required />
      <input name="password" type="password" className="form-control form-control-lg mb-3" placeholder="Password" value={password} onChange={this.handleChange} required />
      <button type="submit" className="btn btn-danger btn-block btn-lg">Log in</button>
      {error && <p className="text-danger mt-2">{error}</p>}
