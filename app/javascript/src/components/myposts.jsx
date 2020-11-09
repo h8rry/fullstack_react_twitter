@@ -31,6 +31,7 @@ class Myposts extends Component {
               })
           })
   }
+  
 
   componentDidUpdate() {
     fetch(`/api/users/${this.state.username}/tweets`)
@@ -88,7 +89,6 @@ class Myposts extends Component {
         return (
         <React.Fragment>
             <div className="border_write_tweet">
-             Current user: {this.state.username}
                 <form onSubmit={this.newPost}>
                     <div class="form-group">
                         <textarea 
