@@ -1,6 +1,10 @@
 import React from 'react';
 import '../styles.scss';
 import { safeCredentials, handleErrors } from '../utils/fetchHelper';
+import { Element } from 'react-scroll'
+import Scroll from 'react-scroll';
+let Link = Scroll.Link;
+
 
 class Login extends React.Component {
 
@@ -61,15 +65,17 @@ class Login extends React.Component {
 <div className="border_signup">
 
    <form onSubmit={this.login}>
-     <h3>LOGIN</h3>
+
+     <h3><Element id='login-destination' name='login-destination'>LOGIN</Element></h3>
      <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Username" value={username} onChange={this.handleChange} required />
      <input name="password" type="password" className="form-control form-control-lg mb-3" placeholder="Password" value={password} onChange={this.handleChange} required />
      <button type="submit" className="btn btn-danger btn-block btn-lg">Log in</button>
      {error && <p className="text-danger mt-2">{error}</p>}
    </form>
    <hr/>
-   <p className="mb-0">Don't have an account? <a className="text-primary">Sign up</a></p>
+   <p className="mb-0">Don't have an account? <a className="text-primary"><Link to="signup-destination">Sign up</Link></a></p>
    </div>
+
  </React.Fragment>
 
   )
