@@ -53,6 +53,11 @@ group :test do
   gem 'webdrivers'
 end
 
+group :assets do
+  gem 'uglifier'
+end
+
+
 group :production do
   gem 'pg', '~> 1.2.3'
 end
