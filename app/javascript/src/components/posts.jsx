@@ -101,7 +101,7 @@ class Post extends Component {
         const { tweets } = this.state;
         return (
         <React.Fragment>
-            <div className="border_about">
+            <div className="border_write_tweet">
                 <form onSubmit={this.newPost}>
                     <div class="form-group">
                         <textarea 
@@ -121,26 +121,25 @@ class Post extends Component {
                         </textarea>
 
                         <span>Upload Image</span>
-                        <button type="submit" class="btn btn-primary">Tweet</button>
+                        <button type="submit" class="btn btn-secondary tweet_button">Tweet</button>
                     </div>
                 </form>
             </div>
 
             {tweets.map(tweet => {
               return (
-            <div className="border_about">
+            <div className="border_tweets">
             <div className="container">
             <div className="row">
 
                
             <div key={tweet.id}  className="col-8">
-            <p>Username@ {tweet.username}</p>
+            <p className="p_stats">Username@ {tweet.username}</p>
             <p>{tweet.message}</p>
             </div>
+
             <div className="col-4">
-            <button onClick={ () => this.deletePost(tweet.id, tweet.username)} type="button" class="btn btn-danger">Delete</button>
-
-
+            <button onClick={ () => this.deletePost(tweet.id, tweet.username)} type="button" class="btn btn-danger delete_button">Delete</button>
             </div>
             
     </div>            

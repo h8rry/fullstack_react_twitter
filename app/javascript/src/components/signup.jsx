@@ -46,14 +46,20 @@ class Signup extends React.Component {
     const { email, password, username, error } = this.state;
     return (
       <React.Fragment>
+
+<div className="border_signup">
+
         <form onSubmit={this.signup}>
+          <h3>SIGNUP</h3>
           <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Username" value={username} onChange={this.handleChange} required />
           <input name="email" type="text" className="form-control form-control-lg mb-3" placeholder="Email" value={email} onChange={this.handleChange} required />
           <input name="password" type="password" className="form-control form-control-lg mb-3" placeholder="Password" value={password} onChange={this.handleChange} required />
           <button type="submit" className="btn btn-danger btn-block btn-lg">Sign up</button>
         </form>
         <hr/>
-       
+        <p className="mb-0">Already have an account? <a className="text-primary">Log in</a></p>
+        </div>   
+
       </React.Fragment>
     )
   }

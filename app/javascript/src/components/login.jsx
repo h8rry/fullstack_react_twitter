@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles.scss';
 import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
-
 class Login extends React.Component {
 
   state = {
@@ -59,7 +58,10 @@ class Login extends React.Component {
 
    <React.Fragment>
 
+<div className="border_signup">
+
    <form onSubmit={this.login}>
+     <h3>LOGIN</h3>
      <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Username" value={username} onChange={this.handleChange} required />
      <input name="password" type="password" className="form-control form-control-lg mb-3" placeholder="Password" value={password} onChange={this.handleChange} required />
      <button type="submit" className="btn btn-danger btn-block btn-lg">Log in</button>
@@ -68,8 +70,8 @@ class Login extends React.Component {
 
    <hr/>
 
-   <p className="mb-0">Don't have an account? <a className="text-primary" onClick={this.props.toggle}>Sign up</a></p>
-
+   <p className="mb-0">Don't have an account? <a className="text-primary">Sign up</a></p>
+   </div>
  </React.Fragment>
 
   )

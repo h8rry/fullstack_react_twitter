@@ -45,10 +45,10 @@ componentDidMount () {
 
       <div className="container">
           <div className="row">
-              <div className="col-2">
+              <div className="col-3">
     <Stats/>
               </div>
-              <div className="col-10">
+              <div className="col-9">
     <Myposts/>
               </div>
     </div>

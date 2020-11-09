@@ -87,7 +87,7 @@ class Myposts extends Component {
         const { tweets } = this.state;
         return (
         <React.Fragment>
-            <div className="border_about">
+            <div className="border_write_tweet">
              Current user: {this.state.username}
                 <form onSubmit={this.newPost}>
                     <div class="form-group">
@@ -97,19 +97,25 @@ class Myposts extends Component {
                         placeholder="What is happening?"
                         onChange={this.handleChange} 
                         value={this.state.text} 
+                        onFocus={(e) => {
+                          console.log('Focused on input');
+                          this.setState({
+                            text: " "
+                        })
+                        }}
                         name="text" 
                         >
                         </textarea>
 
                         <span>Upload Image</span>
-                        <button type="submit" class="btn btn-primary">Tweet</button>
+                        <button type="submit" class="btn btn-secondary tweet_button">Tweet</button>
                     </div>
                 </form>
             </div>
 
             {tweets.map(tweet => {
               return (
-            <div className="border_about">
+            <div className="border_tweets">
             <div className="container">
             <div className="row">
 
@@ -119,7 +125,7 @@ class Myposts extends Component {
             <p>{tweet.message}</p>
             </div>
             <div className="col-4">
-            <button onClick={ () => this.deletePost(tweet.id)} type="button" class="btn btn-danger">Delete</button>
+            <button onClick={ () => this.deletePost(tweet.id)} type="button" class="btn btn-danger delete_button">Delete</button>
             </div>
     
     </div>            

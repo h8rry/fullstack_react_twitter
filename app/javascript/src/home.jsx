@@ -42,10 +42,10 @@ class Home extends React.Component {
 
 <div className="container">
 <div className="row">
-<div className="col">
+<div className="col-xs-12 col-sm-6">
       <About />
 </div>
-<div className="col">
+<div className="col-xs-12 col-sm-6">
       <Login />
       <Signup />
 </div>

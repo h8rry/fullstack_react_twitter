@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Layout from './layout';
 import Stats from './components/stats'
 import Post from './components/posts'
@@ -46,15 +45,14 @@ componentDidMount () {
 
     return (
   <Layout>
-    <button id="log-out" href="#" onClick={this.handleClick}>Log Out</button>
-    <button onClick={this.handleClick2}>See only my feeds</button>
- 
       <div className="container">
           <div className="row">
-              <div className="col-2">
+              <div className="col-3">
     <Stats/>
               </div>
-              <div className="col-10">
+              <div className="col-9">
+    <button className="btn btn-danger float-right buttons" id="log-out" href="#" onClick={this.handleClick}>Log Out</button>
+    <button className="btn btn-secondary float-right buttons" onClick={this.handleClick2}>See only my feeds</button>
     <Post/>
               </div>
     </div>
