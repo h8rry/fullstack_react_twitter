@@ -50,6 +50,7 @@ class Signup extends React.Component {
 <div className="border_signup">
 
         <form onSubmit={this.signup}>
+
           <h3>SIGNUP</h3>
           <input name="username" type="text" className="form-control form-control-lg mb-3" placeholder="Username" value={username} onChange={this.handleChange} required />
           <input name="email" type="text" className="form-control form-control-lg mb-3" placeholder="Email" value={email} onChange={this.handleChange} required />
