@@ -12,7 +12,7 @@ class Post extends Component {
            logged_user: "example user"
         }
         this.handleChange = this.handleChange.bind(this)
-        this.deletePost = this.deletePost.bind(this)
+      /*  this.deletePost = this.deletePost.bind(this) */
     }
     
     handleChange(event) {
@@ -68,14 +68,14 @@ class Post extends Component {
     }
 
     componentDidMount () {
-        fetch('/api/tweets')
+    /*    fetch('/api/tweets')
         .then(handleErrors)
         .then(data => {
          console.log(data);
          this.setState({
          tweets: data.tweets
         })
-      })
+      }) */
       fetch('/api/authenticated')
         .then(handleErrors)
         .then(data => {
@@ -85,7 +85,7 @@ class Post extends Component {
             })
         })
       }
-    
+
       componentDidUpdate() {
         fetch('/api/tweets')
         .then(handleErrors)

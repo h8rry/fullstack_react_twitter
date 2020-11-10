@@ -31,7 +31,6 @@ class Myposts extends Component {
               })
           })
   }
-  
 
   componentDidUpdate() {
     fetch(`/api/users/${this.state.username}/tweets`)
@@ -42,6 +41,8 @@ class Myposts extends Component {
     })
   })
   }
+
+
 
   newPost = (e) => {
     console.log("posted")
@@ -81,7 +82,6 @@ class Myposts extends Component {
       })
       console.log("Could not delete tweet")
     })
-
 }
 
     render() {
