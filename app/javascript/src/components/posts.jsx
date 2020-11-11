@@ -44,8 +44,12 @@ class Post extends Component {
               error: 'Could not add tweet',
             })
             console.log("Could not add tweet")
-          })
-
+          }).then(()=>{
+          fetch('/api/tweets').then(handleErrors).then(data => {
+            console.log(data);
+            this.setState({tweets: data.tweets})
+          }) 
+        })
       }
 
       deletePost (id, user)  {
@@ -61,9 +65,12 @@ class Post extends Component {
             error: 'Could not delete tweet',
           })
           console.log("Could not delete tweet")
+        }).then(()=>{
+          fetch('/api/tweets').then(handleErrors).then(data => {
+            console.log(data);
+            this.setState({tweets: data.tweets})
+          }) 
         })
-      } else {
-        console.log("Could not delete tweet")
       }
     }
 
@@ -80,7 +87,7 @@ class Post extends Component {
         fetch('/api/tweets').then(handleErrors).then(data => {
           console.log(data);
           this.setState({tweets: data.tweets})
-        })
+        }) 
 
     }
 

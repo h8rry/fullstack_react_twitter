@@ -29,4 +29,3 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render (<Feedpage/>, document.body.appendChild(document.createElement('div')),)
 })
 
-

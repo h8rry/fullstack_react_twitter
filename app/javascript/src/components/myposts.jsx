@@ -30,13 +30,13 @@ class Myposts extends Component {
                 username: data.username,
               })
 
-              fetch(`/api/users/${
+             fetch(`/api/users/${
                 data.username
               }/tweets`).then(handleErrors).then(data => {
                 this.setState({tweets: data.tweets})
-              })
+              }) 
 
-          })
+          }) 
   }
 
   newPost = (e) => {
@@ -61,8 +61,11 @@ class Myposts extends Component {
           error: 'Could not add tweet',
         })
         console.log("Could not add tweet")
-      })
-
+      }).then(()=>{
+       fetch(`/api/users/${this.state.username}/tweets`).then(handleErrors).then(data => {
+        this.setState({tweets: data.tweets})
+      }) 
+    })
   }
     
   deletePost (id)  {
@@ -76,7 +79,11 @@ class Myposts extends Component {
         error: 'Could not delete tweet',
       })
       console.log("Could not delete tweet")
-    })
+    }).then(()=>{
+      fetch(`/api/users/${this.state.username}/tweets`).then(handleErrors).then(data => {
+       this.setState({tweets: data.tweets})
+     }) 
+   })
 }
 
     render() {

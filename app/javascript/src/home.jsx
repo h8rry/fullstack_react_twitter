@@ -34,7 +34,7 @@ class Home extends React.Component {
     const { authenticated} = this.state;
     if (authenticated) {
       window.location = '/feedpage'
-    };
+    } 
     return (
       <Layout>
 
