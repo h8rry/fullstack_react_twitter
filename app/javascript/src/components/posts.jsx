@@ -68,14 +68,6 @@ class Post extends Component {
     }
 
     componentDidMount () {
-    /*    fetch('/api/tweets')
-        .then(handleErrors)
-        .then(data => {
-         console.log(data);
-         this.setState({
-         tweets: data.tweets
-        })
-      }) */
       fetch('/api/authenticated')
         .then(handleErrors)
         .then(data => {
@@ -84,18 +76,13 @@ class Post extends Component {
               logged_user: data.username,
             })
         })
-      }
 
-      componentDidUpdate() {
-        fetch('/api/tweets')
-        .then(handleErrors)
-        .then(data => {
-         console.log(data);
-         this.setState({
-         tweets: data.tweets
+        fetch('/api/tweets').then(handleErrors).then(data => {
+          console.log(data);
+          this.setState({tweets: data.tweets})
         })
-      })
-      }
+
+    }
 
     render() {
         const { tweets } = this.state;
