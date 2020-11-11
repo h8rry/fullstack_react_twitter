@@ -25,5 +25,8 @@ class Feedpage extends React.Component {
     }
   }
 
-export default Feedpage;
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render (<Feedpage/>, document.body.appendChild(document.createElement('div')),)
+})
+
 

@@ -28,15 +28,15 @@ class Stats extends Component {
         }
   }
 
-  componentDidUpdate() {
-    fetch(`/api/users/${this.state.username}/tweets`)
-    .then(handleErrors)
-    .then(data => {
-     this.setState({
-     tweets: data.tweets
-    })
-  })
-  }
+  // componentDidUpdate() {
+  //   fetch(`/api/users/${this.state.username}/tweets`)
+  //   .then(handleErrors)
+  //   .then(data => {
+  //    this.setState({
+  //    tweets: data.tweets
+  //   })
+  // })
+  // }
 
   componentWillUnmount() {
     this._isMounted = false;

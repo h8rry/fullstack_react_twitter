@@ -29,20 +29,15 @@ class Myposts extends Component {
               this.setState({
                 username: data.username,
               })
+
+              fetch(`/api/users/${
+                data.username
+              }/tweets`).then(handleErrors).then(data => {
+                this.setState({tweets: data.tweets})
+              })
+
           })
   }
-
-  componentDidUpdate() {
-    fetch(`/api/users/${this.state.username}/tweets`)
-    .then(handleErrors)
-    .then(data => {
-     this.setState({
-     tweets: data.tweets
-    })
-  })
-  }
-
-
 
   newPost = (e) => {
     console.log("posted")
